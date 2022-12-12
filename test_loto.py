@@ -17,11 +17,15 @@ class TestCart(unittest.TestCase):
     def test_dec(self):
         self.assertIsNotNone(self.cart.dec())
 
-    def test_showCart(self):
-        self.assertTrue(self.cart.show_cart(), True)
+    def test_str(self):
+        self.assertIs(print(self.cart), None)
+        assert len(self.cart) == 29
 
     def test_isempty(self):
         self.assertFalse(self.cart.is_empty(), False)
+
+    def test_contains(self):
+        self.assertIn('#', str(self.cart))
 
 
 class TestNpc(unittest.TestCase):
@@ -35,13 +39,3 @@ class TestNpc(unittest.TestCase):
     def test_step(self):
         self.assertTrue(self.npc.step(50), True)
         self.assertTrue(self.npc.step(10), True)
-
-# class TestGame():
-#     def setUp(self):
-#         self.game = Game()
-#
-#     def test_init(self):
-#         game = Game()
-#         assert len(game.bag)==100
-#         # with pytest.raises(Exception):
-#         #     self.game.bag
