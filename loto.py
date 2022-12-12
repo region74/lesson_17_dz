@@ -22,10 +22,14 @@ class Cart:
         return inner
 
     @dec
-    def show_cart(self):
-        return (list(self.cart))
+    def __str__(self):
+        return self.cart
 
-    
+    def __len__(self):
+        return len(self.cart)
+
+    def __contains__(self, item):
+        return self.cart[item]
 
     def is_empty(self):
         # return False if (lambda x:(str(i).isdigit() for i in self.cart)) else True
@@ -53,7 +57,7 @@ class Person:
         print(f'Имя игрока: {self.name}')
 
     def step(self, num):
-        print(self.cart.show_cart())
+        print(self.cart)
         answer = input('Зачеркнуть цифру (Y/N)? ')
         while answer not in 'yYNn':
             answer = input('Некорректный ввод. Зачеркнуть цифру (Y/N)? ')
@@ -77,7 +81,7 @@ class Npc:
         self.name = f'Compucter {random.randint(1, 10)}'
 
     def step(self, num):
-        print(self.cart.show_cart())
+        print(self.cart)
         if self.cart.is_num_to_cart(num):
             self.cart.cross_out(num)
             print('Номер есть')
